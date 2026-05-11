@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Time Stories - test{% endblock %}
+{% block content %}
+
+<style>
+
+</style>
+
+<div class="w3-container w3-padding">
+    {% if success %}
+        <h1>Goed gedaan!</h1>
+        <p>Je hebt de brandstof, het poeder in het magazijn van de drogist, ontdekt en hiermee [historisch figuur] kunnen redden.
+            Hiermee heb je voorkomen dat de geschiedenis helemaal anders liep enzo. Veel succes bij jullie volgende missie!</p>
+
+    {% else %}
+        <section>
+            <!-- class wel nodig? -->
+            <form method="POST" class="w3-container">
+                <label for="oplossing">Vul hier in wat jullie denken dat de brand heeft veroorzaakt <br> en waar je de brandstof kunt vinden/hoe je deze hebt weggehaald:</label><br>
+                <textarea name="oplossing" class="w3-input w3-border" rows="5" required></textarea>
+
+                <!-- Dit werkt zo ? -->
+                <button href="/oplossing" type="submit" class="w3-button w3-green w3-margin-top">
+                    Check oplossing
+                </button>
+            </form>
+        </section>
+    {% endif %}
+</div>
+
+{% endblock %}

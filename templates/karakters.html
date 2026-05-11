@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Time Stories - test{% endblock %}
+{% block content %}
+
+<style>
+
+.karakters {
+    list-style: none;
+    padding: 20px;
+    margin: 30px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;    
+}
+
+.karakter {
+    position: relative;
+    width: 300px;
+    border: 3px solid rgb(44, 43, 43);
+    overflow: hidden;
+    padding: 0;
+}
+
+h2 {
+    font-family: Helvetica;
+    font-size: 24px;
+    align-content: center;
+}
+
+p {
+    font-size: 12px;
+}
+
+.karakter img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+</style>
+
+<section>
+    <ul class="karakters">
+        {% for karakter in karakters %}
+        <li class="karakter">
+            <img src="{{ url_for('static', filename=karakter[2]) }}"
+            alt="{{ karakter[0]}}">
+            <h2>{{ karakter[0] }}</h2>
+            <p> Levens: <b>{{ karakter[3] }}</b> Kracht: <b>{{ karakter[4] }}</b> Intelligentie: <b>{{ karakter[5] }}</b> Sociaal: <b>{{ karakter[6] }}</b> </p>
+            <p>{{ karakter[1] }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

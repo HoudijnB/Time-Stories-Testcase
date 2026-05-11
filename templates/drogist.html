@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Time Stories - test{% endblock %}
+{% block content %}
+
+<style>
+
+.tegels {
+    list-style: none;
+    padding: 20px;
+    margin: 30px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.tegel {
+    position: relative;
+    width: 300px;
+    height: 480px;
+    padding: 0;
+    overflow: hidden;
+}
+
+h2 {
+    font-family: Helvetica;
+    font-size: 24px;
+    align-content: center;
+}
+
+.tegel img {
+    border: 1.5px solid rgb(44, 43, 43);
+    height: 100%;
+    width: 100%;
+}
+
+.tegel #overlay {
+        content: **;
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+    }
+
+.cta {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 12px 36px;
+    background:  linear-gradient(90deg, #117432, #188237);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 999px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home {
+    position: center; /* Zoek uit hoe dit goed te centreren */
+    margin: 0 220px;
+}
+
+</style>
+
+<section>
+    <ul class="tegels">
+    {% for tegel in tegels %}
+        <li class="tegel">
+            <h2>{{ tegel[0] }}</h2>
+            <img src="{{ url_for('static', filename=tegel[1]) }}"
+            alt="{{ tegel['naam'] }}">
+            {% if tegel[2] == 1 %}
+                <div id="overlay"></div>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</section>
+
+<section>
+    
+    <!-- Button om naar de locatie te gaan -->
+     <!-- Zet deze buttons onder de afbeeldingen? -->
+    <a href="drogist/kassa" class="cta">Ga naar de kassa</a>
+    <a href="drogist/magazijn" class="cta">Ga naar het magazijn</a>
+
+</section>
+
+<section>
+    <div class="home">
+        <!-- ? Button om terug te gaan naar overzichtpagina -->
+        <a href="/overzicht" class="cta">Ga terug naar overzicht</a>
+    </div>
+</section>
+
+{% endblock %}

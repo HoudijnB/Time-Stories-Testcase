@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% block title %}Time Stories - test{% endblock %}
+{% block content %}
+
+<style>
+
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 60px 0 60px 0;
+    display: flex;
+    justify-content: center;
+    gap: 0px;
+    flex-wrap: wrap;
+}
+
+.vakje {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background-color:rgb(213, 183, 111);
+    padding: 0px;
+    border: 2.5px solid black;
+    overflow: hidden;
+}
+
+.vakje p {
+    position: center;
+    left: 16px;
+    /* top: 50%; */
+    transform: translateX(30%);
+    margin: 0;
+    font-size: 45px;
+    font-weight: 500;
+    color: #020100;
+}
+
+.vlam {
+    content: justify;
+    position: top;
+    transform: translateX(10%) translateY(10%);
+    width: 63px;
+    height: 63px;
+    inset: 0;
+    /* background-color: red;
+    border-radius: 40px */
+}
+
+.pion {
+    content: justify;
+    position: top;
+    transform: translateX(10%) translateY(10%);
+    width: 63px;
+    height: 63px;
+    inset: 0;
+    background-color: red;
+    border-radius: 40px
+}
+
+.map {
+    content: justify;
+    position: center;
+    padding: 0 0 20px 0;
+    display: flex;
+    justify-content: center;
+    /* margin: 90px 0 90px 0; */
+}
+
+.img {
+    /* VERANDER GROOTTE? */
+    width: 200 px
+    /* height: 50 % */
+}
+
+/* form {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    max-width: 400px;   
+    margin: 0 auto;     centreert horizontaal /*
+    width: 100%;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+input, select {
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+} */
+
+h2 {
+    text-align: center;
+    font-family: Helvetica;
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.buttons {
+    list-style: none;
+    padding: 0;
+    margin: 10px 10px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cta {
+    display: inline-block;
+    padding: 10px 20px;
+    background:  linear-gradient(90deg, #117432, #188237);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 300;
+    border-radius: 800px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;    
+}
+
+</style>
+
+<!-- tijdspoor -->
+<section>
+<!-- waarde van timeline gekoppeld aan positie van pion -->
+    <div>
+        <ul class="timeline">
+            <li class="vakje">
+                {% if timeline[0][0] == 0 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>0</p>
+            </li>
+            <li class="vakje">
+                {% if timeline[0][0] == 1 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>1</p>
+            </li>
+            <li class="vakje">
+                {% if timeline[0][0] == 2 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>2</p>
+            </li>
+            <li class="vakje">
+                {% if timeline[0][0] == 3 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>3</p>
+            </li>            
+            <li class="vakje">
+                {% if timeline[0][0] == 4 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>4</p>
+            </li>
+            <li class="vakje">
+                {% if timeline[0][0] == 5 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>5</p>
+            </li>            
+            <li class="vakje">
+                {% if timeline[0][0] == 6 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>6</p>
+            </li>
+            <li class="vakje">
+                {% if timeline[0][0] == 7 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>7</p>
+            </li>            
+            <li class="vakje">
+                {% if timeline[0][0] == 8 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>8</p>
+            </li>
+            <li class="vakje">
+                {% if timeline[0][0] == 9 %}
+                    <div class="pion"></div>
+                {% endif %}
+                <p>9</p>
+            </li>
+            <li class="vakje">
+                <img class="vlam" src="static/images/vlam.png" alt="vlam">
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+<!-- Plattegrond -->
+<section>
+    <div class="map">
+        <img src="static/images/plattegrond.jpeg" alt="Plattegrond">
+    </div>
+</section>
+
+<!-- Buttons voor elke locatie -->
+
+<section>
+<!-- FORM OPTIE -->
+    <!-- <form method="POST">
+        <label for="locatie">Volgende locatie:</label>
+            <input type="text" id="locatie" name="locatie" placeholder="Naar welke locatie willen jullie?" required>
+    </form> -->
+    <div class="button-header">
+        <h2>Volgende locatie:</h2>
+    </div>
+    <!-- Zet buttons naast elkaar zoals bij timeline -->
+    <div>
+    <ul class="buttons">
+        <li class="button">
+            <a href="{{ url_for('supermarkt')}}" class="cta">Supermarkt</a>
+        </li>
+        <li class="button">
+            <a href="{{ url_for('warenhuis')}}" class="cta">Warenhuis</a>
+        </li>
+        <li class="button">
+            <a href="{{ url_for('drogist')}}" class="cta">Drogist</a>
+        </li>
+        <li class="button">
+            <a href="{{ url_for('slagerij')}}" class="cta">Slagerij</a>
+        </li>
+        <!-- Extra li voor als locatie wordt vrijgespeeld -->
+    </ul>
+    </div>
+</section>
+
+<!-- Button om naar de ingevulde locatie te gaan -->
+
+{% endblock %}

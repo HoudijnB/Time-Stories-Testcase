@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Time Stories - test{% endblock %}
+{% block content %}
+
+<style>
+
+h1 {
+    align-content: center;
+}
+
+img {
+    justify-content: center;
+    border: 1.5px solid rgb(44, 43, 43);
+    height: 460px;
+    width: 300px;
+}
+
+.text {
+    justify-content: center;
+    margin: 60px 80px;
+    background-color: rgb(210, 171, 158);
+    border: 1.5px solid rgb(44, 43, 43);
+}
+
+.text h2 {
+    font-family: Helvetica;
+    padding: 20px 30px;
+    font-size: 30px;
+    font-style: bold;
+}
+
+.button {
+    align-content: center;
+    justify-content: center; /* Waarom werkt dit niet? */
+    padding: 0 30px;
+}
+
+.cta {
+    display: inline-block;
+    padding: 12px 36px;
+    background:  linear-gradient(90deg, #117432, #188237);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 999px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+</style>
+
+<section>
+    <h1>Slagerij - balie</h1>
+
+    <img src="{{ url_for('static', filename=tegel[1]) }}"
+    alt="Balie">
+    <div class="text">
+        <h2>{{ tegel[0] }}</h2>
+    </div>
+</section>
+
+<!-- Button om terug te gaan naar supermarkt -->
+<section class="button">
+    <a href="/slagerij" class="cta">Ga terug naar slagerij</a> 
+</section>
+
+
+<!-- ? OOK ? Button om terug te gaan naar homepagina -->
+
+{% endblock %}

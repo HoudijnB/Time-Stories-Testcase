@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Time Stories - introductie{% endblock %}
+{% block content %}
+
+<style>
+    .cta {
+    display: inline-block;
+    padding: 16px 48px;
+    background:  linear-gradient(90deg, #117432, #188237);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 999px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+</style>
+
+<section>
+    <h1>Welkom in de tijdmachine!</h1>
+    <p>Dit is nog maar een testwebsite, dus maak je niet al te druk. In een winkelcentrum is rond 1900 een brand<br>
+        uitgebroken, waarbij een belangrijk historisch figuur is omgekomen in mijn alternatieve timeline.<br>
+        Om te voorkomen dat de geschiedenis drastisch anders verloopt, zullen jullie de brand moeten voorkomen.<br>
+        Vind voor de brand uitbreekt de brandstof en haal deze weg zodat de brand niet begint. Succes!</p>
+</section>
+<section>
+    <a href="/overzicht" class="cta">Begin het spel!</a>
+</section>
+
+{% endblock %}
