@@ -199,7 +199,7 @@ def supermarkt_kassa():
     conn.row_factory = sqlite3.Row
 
     cur.execute("""
-        SELECT tekst, afbeelding_achter FROM Tegel
+        SELECT naam, tekst, afbeelding_achter FROM Tegel
         WHERE id = 1;
     """)
     tegel = cur.fetchone() #Nu is tegel[0] de tekst als string en tegel[1] de url voor afbeelding als string
@@ -218,7 +218,7 @@ def supermarkt_kassa():
     conn.commit()
     conn.close()
 
-    return render_template("supermarkt_kassa.html", tegel=tegel)
+    return render_template("supermarkt_tegel.html", tegel=tegel)
 
 @app.route("/supermarkt/bakkerij")
 def supermarkt_bakkerij():
@@ -228,7 +228,7 @@ def supermarkt_bakkerij():
     conn.row_factory = sqlite3.Row
 
     cur.execute("""
-        SELECT tekst, afbeelding_achter FROM Tegel
+        SELECT naam, tekst, afbeelding_achter FROM Tegel
         WHERE id = 2;
     """)
     tegel = cur.fetchone() #Nu is tegel[0] de tekst als string en tegel[1] de url voor afbeelding als string
@@ -246,7 +246,7 @@ def supermarkt_bakkerij():
 
     conn.commit()
     conn.close()
-    return render_template("supermarkt_bakkerij.html", tegel=tegel)
+    return render_template("supermarkt_tegel.html", tegel=tegel)
 
 @app.route("/supermarkt/olie")
 def supermarkt_olie():
@@ -256,7 +256,7 @@ def supermarkt_olie():
     conn.row_factory = sqlite3.Row
 
     cur.execute("""
-        SELECT tekst, afbeelding_achter FROM Tegel
+        SELECT naam, tekst, afbeelding_achter FROM Tegel
         WHERE id = 3;
     """)
     tegel = cur.fetchone() #Nu is tegel[0] de tekst als string en tegel[1] de url voor afbeelding als string
@@ -275,7 +275,7 @@ def supermarkt_olie():
     conn.commit()
     conn.close()
 
-    return render_template("supermarkt_olie.html", tegel=tegel)
+    return render_template("supermarkt_tegel.html", tegel=tegel)
 
 @app.route("/drogist/kassa")
 def drogist_kassa():
@@ -285,7 +285,7 @@ def drogist_kassa():
     conn.row_factory = sqlite3.Row
 
     cur.execute("""
-        SELECT tekst, afbeelding_achter FROM Tegel
+        SELECT naam, tekst, afbeelding_achter FROM Tegel
         WHERE id = 4;
     """)
     tegel = cur.fetchone() #Nu is tegel[0] de tekst als string en tegel[1] de url voor afbeelding als string
@@ -304,7 +304,7 @@ def drogist_kassa():
     conn.commit()
     conn.close()
 
-    return render_template("drogist_kassa.html", tegel=tegel)
+    return render_template("drogist_tegel.html", tegel=tegel)
 
 @app.route("/drogist/magazijn")
 def drogist_magazijn():
@@ -313,7 +313,7 @@ def drogist_magazijn():
     conn.row_factory = sqlite3.Row
 
     cur.execute("""
-        SELECT tekst, afbeelding_achter FROM Tegel
+        SELECT naam, tekst, afbeelding_achter FROM Tegel
         WHERE id = 5;
     """)
     tegel = cur.fetchone() #Nu is tegel[0] de tekst als string en tegel[1] de url voor afbeelding als string
@@ -332,7 +332,88 @@ def drogist_magazijn():
     conn.commit()
     conn.close()
 
-    return render_template("drogist_magazijn.html", tegel=tegel)
+    return render_template("drogist_tegel.html", tegel=tegel)
+
+@app.route("/warenhuis/kassa")
+def warenhuis_kassa():
+    conn = sqlite3.connect("./db/testscenario.db")
+    cur = conn.cursor()
+    conn.row_factory = sqlite3.Row
+
+    cur.execute("""
+        SELECT naam, tekst, afbeelding_achter FROM Tegel
+        WHERE id = 6;
+    """)
+    tegel = cur.fetchone()
+
+    cur.execute("""
+        SELECT bezocht FROM Tegel
+        WHERE id = 6;
+    """)
+    bezocht = cur.fetchone()
+    if not bezocht[0]:
+        cur.execute(""" 
+            UPDATE TEGEL SET bezocht = True
+            WHERE id = 6;
+        """)
+
+    conn.commit()
+    conn.close()
+    return render_template("warenhuis_tegel.html", tegel=tegel)
+
+@app.route("/warenhuis/elektronica")
+def warenhuis_elektronica():
+    conn = sqlite3.connect("./db/testscenario.db")
+    cur = conn.cursor()
+    conn.row_factory = sqlite3.Row
+
+    cur.execute("""
+        SELECT naam, tekst, afbeelding_achter FROM Tegel
+        WHERE id = 7;
+    """)
+    tegel = cur.fetchone()
+
+    cur.execute("""
+        SELECT bezocht FROM Tegel
+        WHERE id = 7;
+    """)
+    bezocht = cur.fetchone()
+    if not bezocht[0]:
+        cur.execute(""" 
+            UPDATE TEGEL SET bezocht = True
+            WHERE id = 7;
+        """)
+
+    conn.commit()
+    conn.close()
+    return render_template("warenhuis_tegel.html", tegel=tegel)
+
+@app.route("/warenhuis/restaurant")
+def warenhuis_restaurant():
+    conn = sqlite3.connect("./db/testscenario.db")
+    cur = conn.cursor()
+    conn.row_factory = sqlite3.Row
+
+    cur.execute("""
+        SELECT naam, tekst, afbeelding_achter FROM Tegel
+        WHERE id = 8;
+    """)
+    tegel = cur.fetchone()
+
+    cur.execute("""
+        SELECT bezocht FROM Tegel
+        WHERE id = 8;
+    """)
+    bezocht = cur.fetchone()
+    if not bezocht[0]:
+        cur.execute(""" 
+            UPDATE TEGEL SET bezocht = True
+            WHERE id = 8;
+        """)
+
+    conn.commit()
+    conn.close()
+    return render_template("warenhuis_tegel.html", tegel=tegel) 
 
 @app.route("/slagerij/balie")
 def slagerij_balie():
